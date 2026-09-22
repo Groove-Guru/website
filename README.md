@@ -3,12 +3,12 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/HARNESS-IN%20DEVELOPMENT-FFB020?style=flat-square&labelColor=07050E" alt="Harness: in development">
-  <img src="https://img.shields.io/badge/PAGES-1-F5F0FF?style=flat-square&labelColor=07050E" alt="Pages: 1">
-  <img src="https://img.shields.io/badge/STACK-VANILLA%20JS-F5F0FF?style=flat-square&labelColor=07050E" alt="Stack: vanilla JS">
-  <img src="https://img.shields.io/badge/BUILD%20STEP-NONE-F5F0FF?style=flat-square&labelColor=07050E" alt="Build step: none">
-  <img src="https://img.shields.io/badge/DEPENDENCIES-ZERO-FF2D95?style=flat-square&labelColor=07050E" alt="Dependencies: zero">
-  <img src="https://img.shields.io/badge/DEPLOY-CLOUDFLARE%20PAGES-F5F0FF?style=flat-square&labelColor=07050E" alt="Deploy: Cloudflare Pages">
+  <img src="https://img.shields.io/badge/HARNESS-IN%20DEVELOPMENT-FF4A2B?style=flat-square&labelColor=0B0B0B" alt="Harness: in development">
+  <img src="https://img.shields.io/badge/PAGES-1-F2F0EA?style=flat-square&labelColor=0B0B0B" alt="Pages: 1">
+  <img src="https://img.shields.io/badge/STACK-VANILLA%20JS-F2F0EA?style=flat-square&labelColor=0B0B0B" alt="Stack: vanilla JS">
+  <img src="https://img.shields.io/badge/BUILD%20STEP-NONE-F2F0EA?style=flat-square&labelColor=0B0B0B" alt="Build step: none">
+  <img src="https://img.shields.io/badge/DEPENDENCIES-ZERO-F2F0EA?style=flat-square&labelColor=0B0B0B" alt="Dependencies: zero">
+  <img src="https://img.shields.io/badge/DEPLOY-CLOUDFLARE%20PAGES-F2F0EA?style=flat-square&labelColor=0B0B0B" alt="Deploy: Cloudflare Pages">
 </p>
 
 ---
@@ -50,7 +50,7 @@ When something ships, change its label in `index.html` and `llms.txt` together.
 
 | File | Use |
 | :--- | :--- |
-| `assets/favicon.svg` | The mark: a platter with the groove line cut through it. Magenta `#ff2d95`, transparent |
+| `assets/favicon.svg` | The mark: a platter with the groove line cut through it. Off-white `#f2f0ea`, transparent |
 | `assets/logo-mark.svg` | The mark on a club-black tile. Source for the app icons |
 | `assets/logo.svg`, `assets/logo.png` | Horizontal lockup, "groove guru". The PNG uses the real Instrument Sans and a transparent background; the SVG falls back to system fonts |
 | `assets/icon-512.png`, `assets/apple-touch-icon.png` | App and home-screen icons |
@@ -63,9 +63,10 @@ The raster files come from the HTML sources in `tools/`. After changing a source
 tools/render-og.sh   # headless Chrome; writes every PNG above
 ```
 
-Palette: canvas `#07050e`, magenta `#ff2d95`, acid lime `#c8ff2e`, laser cyan
-`#00e5ff`, ultraviolet `#7b2fff`, ink `#f5f0ff`. Type: Instrument Sans and
-JetBrains Mono.
+Palette ("concrete"): canvas `#0b0b0b`; ink `#f2f0ea` for the mark, text and
+primary buttons; greys `#a19e97` and `#9d9a93`; lines `#2a2a2a` and `#3d3d3d`;
+signal red `#ff4a2b` for warnings only. Square corners, film grain, no glow.
+Type: Instrument Sans and JetBrains Mono.
 
 ## Develop
 

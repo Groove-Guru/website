@@ -33,7 +33,7 @@ the site previews each drill with a visual beat clock (no audio). the full path 
 - pro (at launch): $6.99/month or $49.99/year (USD)
 
 ## links
-- site: https://grooveguru.dev/
+- site: https://groove.guru/
 - github: https://github.com/Groove-Guru (the harness repository opens when the harness is released)
 
 not affiliated with or endorsed by pioneer dj.

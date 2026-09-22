@@ -139,7 +139,7 @@ if(Z){
   /* 4 · blend on camelot */
   (function(){var s=steps[3],svg=$('.wheel',s),W=wheelKit(svg),o=$('[data-out]',s),inn=$('[data-in]',s),out=null;
     var reset=function(){out=null;W.clear();W.label('pick','outgoing key');o.textContent='—';inn.textContent='—'};reset();
-    var pickOut=function(k){out=k;W.show(k);o.textContent=k;inn.textContent='—';status(3,k+' is playing. now pick the incoming key — lime ones blend clean.')};
+    var pickOut=function(k){out=k;W.show(k);o.textContent=k;inn.textContent='—';status(3,k+' is playing. now pick the incoming key — outlined ones blend clean.')};
     W.bind(function(k){
       if(!out)return pickOut(k);
       if(k===out){inn.textContent=k;status(3,'same key, same energy. safe, but try a neighbour.','good');return}

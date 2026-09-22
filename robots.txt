@@ -1,8 +1,8 @@
-# Groove Guru. https://grooveguru.dev
+# Groove Guru. https://groove.guru
 # Answer engines and AI crawlers are welcome. /llms.txt is a plain-text summary
 # for machine readers, including what exists today and what is planned.
 
 User-agent: *
 Allow: /
 
-Sitemap: https://grooveguru.dev/sitemap.xml
+Sitemap: https://groove.guru/sitemap.xml

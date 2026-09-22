@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploys grooveguru.dev (groove-guru.pages.dev until the domain is attached) from origin/main, and from nothing else.
+# Deploys groove.guru (groove-guru.pages.dev until the domain is attached) from origin/main, and from nothing else.
 #
 #     tools/deploy.sh             build origin/main in a throwaway worktree, deploy it
 #     tools/deploy.sh --dry-run   build it and say what would ship, deploy nothing
