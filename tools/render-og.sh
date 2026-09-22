@@ -27,7 +27,7 @@ shoot "$ROOT/tools/logo-render.html" 1200 240 "$ROOT/assets/logo.png" 2 --defaul
 # Icon: Chrome ignores window widths under ~500px, so render at 512 and downscale.
 cat > "$TMP/icon.html" <<HTML
 <!DOCTYPE html><meta charset="utf-8">
-<style>html,body{margin:0;background:#0b0b0b;width:512px;height:512px}
+<style>html,body{margin:0;background:#0d0d0c;width:512px;height:512px}
 svg{display:block;width:512px;height:512px}</style>
 $(cat "$ROOT/assets/logo-mark.svg")
 HTML

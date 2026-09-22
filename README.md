@@ -51,6 +51,7 @@ When something ships, change its label in `index.html` and `llms.txt` together.
 | File | Use |
 | :--- | :--- |
 | `assets/favicon.svg` | The mark: a platter with the groove line cut through it. Off-white `#f2f0ea`, transparent |
+| `assets/concrete.jpg` | The concrete texture the stylesheet tiles behind the page, sections and cast headings |
 | `assets/logo-mark.svg` | The mark on a club-black tile. Source for the app icons |
 | `assets/logo.svg`, `assets/logo.png` | Horizontal lockup, "groove guru". The PNG uses the real Instrument Sans and a transparent background; the SVG falls back to system fonts |
 | `assets/icon-512.png`, `assets/apple-touch-icon.png` | App and home-screen icons |
@@ -65,8 +66,11 @@ tools/render-og.sh   # headless Chrome; writes every PNG above
 
 Palette ("concrete"): canvas `#0b0b0b`; ink `#f2f0ea` for the mark, text and
 primary buttons; greys `#a19e97` and `#9d9a93`; lines `#2a2a2a` and `#3d3d3d`;
-signal red `#ff4a2b` for warnings only. Square corners, film grain, no glow.
-Type: Instrument Sans and JetBrains Mono.
+signal red `#ff4a2b` for warnings only. Headings are cast into a concrete
+texture (`assets/concrete.jpg`, 768px tile, also behind sections and slabs);
+controls read as hardware (keycap buttons, backlit pads, aluminium faders).
+Type: Big Shoulders Display (headings, wordmark) and Big Shoulders Stencil
+(section numbers), Instrument Sans (body), JetBrains Mono (labels).
 
 ## Develop
 
