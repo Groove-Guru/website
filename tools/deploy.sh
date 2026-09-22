@@ -60,3 +60,14 @@ npx --yes wrangler@latest pages deploy "$tmp/tree/dist" \
   --commit-hash="$sha" \
   --commit-message="$subject" \
   --commit-dirty=false
+
+# A deploy that shipped the wrong directory reports the same success as one that
+# shipped dist/. Check the live origin for repository files that must never be public.
+origin="https://groove-guru.pages.dev"
+leaked=0
+for p in /README.md /tools/deploy.sh /tools/og-render.html /.git/config /assets/org-avatar.png; do
+  code=$(curl -s -o /dev/null -w '%{http_code}' "$origin$p")
+  if [ "$code" = 200 ]; then echo "LEAK: $origin$p answers 200" >&2; leaked=1; fi
+done
+[ "$leaked" = 0 ] && echo "leak check: clean"
+exit "$leaked"
