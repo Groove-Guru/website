@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. Temporary (302) on purpose: the targets live on
+# GitHub and move to the harness repository once it is public.
+/github   https://github.com/Groove-Guru   302
+/source   https://github.com/Groove-Guru   302

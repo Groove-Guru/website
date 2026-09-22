@@ -1,0 +1,14 @@
+{
+  "name": "groove guru",
+  "short_name": "groove guru",
+  "description": "a dj tutor for pro dj link gear",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07050e",
+  "theme_color": "#07050e",
+  "icons": [
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

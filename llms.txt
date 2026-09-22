@@ -1,0 +1,39 @@
+# groove guru
+
+> a dj tutor that listens to pioneer pro dj link gear on the booth lan, watches sync / master / beat / cue state, and coaches you in a calm voice when the mix is wrong or improvable — camelot clashes, phrase boundaries, drift.
+
+tagline: practice like someone is watching. because something is.
+
+devices required: pro dj link gear (cdjs + djm) on the booth lan. groove guru is not a browser-only tool; the website only previews the drills.
+
+## status
+in development. nothing is released yet: the site and its drill previews are live; the booth harness, the coach and pro are being built.
+
+## what it does
+- passive listener on udp 50000 (announcements), 50001 (beat packets, type 0x28), 50002 (player status)
+- mirrors the control surface (play, cue, sync, master, on-air, crossfader) in a browser
+- coaches key (camelot), phrase (4 / 8 / 16 bars) and timing (drift), one note at a time
+
+## learning path: zero → booth
+the site previews each drill with a visual beat clock (no audio). the full path runs in-product against live deck state on real gear.
+1. count the bar — build four-on-the-floor on a 16-step sequencer
+2. cue & drop — set a hot cue on beat 1 of a phrase
+3. ride the phrase — mark phrase turns at 4 / 8 / 16 bars
+4. blend on camelot — pick outgoing and incoming keys; compatible = ±1 or relative major/minor
+5. the first mix — start deck 2 on the one, ride the crossfader across
+6. take it to gear — run the same drills live on your cdjs (devices required)
+
+## stack
+- booth harness (in development): one rust binary, open source (MIT), self-hostable
+- cratefield backend: cloudflare workers, d1, durable objects
+- companion (planned): ipad/iphone glance view over local wi-fi or cloudflare
+
+## pricing
+- booth harness: free
+- pro (at launch): $6.99/month or $49.99/year (USD)
+
+## links
+- site: https://grooveguru.dev/
+- github: https://github.com/Groove-Guru (the harness repository opens when the harness is released)
+
+not affiliated with or endorsed by pioneer dj.
