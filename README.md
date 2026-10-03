@@ -72,6 +72,17 @@ controls read as hardware (keycap buttons, backlit pads, aluminium faders).
 Type: Big Shoulders Display (headings, wordmark) and Big Shoulders Stencil
 (section numbers), Instrument Sans (body), JetBrains Mono (labels).
 
+## The "Built with" strip
+
+The footer line naming what the site is built with (Cloudflare, live; Keep
+Shipping deploys, planned) comes from the Factory Zero registry: this venture's
+`uses` in `Factory-Zero/website` `assets/fz-data.js`, published as
+`https://factory0.ventures/stack.json` and vendored in `tools/built-with.json`.
+`tools/built-with.py` writes it between the `built-with` markers in
+`index.html`; nothing is fetched at runtime. When the registry changes, run
+`python3 tools/built-with.py --pull`, and update the "built with" section of
+`llms.txt` with it. Never edit the strip or the JSON by hand.
+
 ## Develop
 
 ```sh

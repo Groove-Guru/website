@@ -482,6 +482,9 @@ button.pad:active{transform:scale(.94)}
 .foot__tag{font:500 13px var(--m);color:var(--mut)}
 .chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .foot .fine{margin-top:20px}
+/* "Built with": generated from tools/built-with.json by tools/built-with.py; lowercase like the rest of the copy */
+.built-with{margin:20px 0 0;font:400 13px/1.65 var(--m);color:var(--mut);text-transform:lowercase;overflow-wrap:anywhere}
+.built-with a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
 
 /* ── reduced motion ───────────────── */
 @media (prefers-reduced-motion:reduce){
