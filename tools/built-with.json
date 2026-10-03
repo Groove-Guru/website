@@ -1,0 +1,29 @@
+{
+  "id": "FZ-010",
+  "name": "Groove Guru",
+  "site": "https://groove.guru/",
+  "page": "https://factory0.ventures/ventures/groove-guru/",
+  "uses": [
+    {
+      "id": "FZ-012",
+      "name": "Keep Shipping",
+      "kind": "factory-zero",
+      "url": "https://keepshipping.run/",
+      "role": "deploys",
+      "phrase": "Deploys by",
+      "status": "planned",
+      "note": "Every venture site and Worker deployed from the Keep Shipping console."
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "kind": "third-party",
+      "url": "https://www.cloudflare.com",
+      "role": "hosting",
+      "phrase": "Hosted on",
+      "status": "live",
+      "note": "The site."
+    }
+  ],
+  "source": "https://factory0.ventures/stack.json"
+}
