@@ -260,11 +260,16 @@
      <form class="wl__form" novalidate aria-label="Groove Guru waitlist" data-wl hidden>
       <label class="sr-only" for="wl-email">email</label>
       <input class="wl__in" id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="wl-err">
-      <button class="btn btn--primary wl__go" type="submit"><span data-wl-label>join the waitlist</span></button>
+      <button class="btn btn--primary wl__go" type="submit"><span class="wl__spin" aria-hidden="true"></span><span data-wl-label>join the waitlist</span></button>
      </form>
      <div class="wl__human" role="group" aria-label="human check" hidden data-wl-captcha></div>
      <p class="wl__err fine" id="wl-err" role="alert" hidden data-wl-err></p>
-     <p class="wl__done fine" role="status" hidden data-wl-done><strong>check your inbox.</strong> we sent a confirmation link to <span data-wl-email></span>. open it to hold your place.</p>
+     <div class="wl__done" role="status" aria-live="polite" tabindex="-1" hidden data-wl-done>
+      <p class="wl__done-h">check your inbox</p>
+      <p>we sent a confirmation link to <strong data-wl-email></strong>. click it to hold your place on the groove guru waitlist.</p>
+      <p class="fine">it can take a minute — check spam or promotions if it isn’t there. already confirmed before? then you’re already on the list; nothing more to do.</p>
+      <p class="fine"><button class="wl__again" type="button" data-wl-again>use a different email</button></p>
+     </div>
      <noscript><p class="fine">the waitlist needs javascript for its human check. turn it on and reload, or follow the build on github.</p></noscript>
     </div>
     <dl class="plans">

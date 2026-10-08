@@ -187,7 +187,9 @@ if(wl){var API='https://api.groove.guru/v1/waitlist',SITEKEY='0x4AAAAAAFRBOsa9D5
   TS='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=grooveTurnstileReady',
   em=wl.elements.email,go=$('.wl__go',wl),lbl=$('[data-wl-label]',wl),human=$('[data-wl-captcha]'),err=$('[data-wl-err]'),
   token=null,widget=null,broken=false,GH='<a href="https://github.com/Groove-Guru">github</a>';
-  var fail=function(h){err.innerHTML=h;err.hidden=false};
+  var fail=function(h,onEm){err.innerHTML=h;err.hidden=false;em.setAttribute('aria-invalid',onEm?'true':'false');if(onEm)em.focus()};
+  var busy=function(on){go.disabled=on;if(on)go.setAttribute('aria-busy','true');else go.removeAttribute('aria-busy');lbl.textContent=on?'sending…':'join the waitlist'};
+  var done=$('[data-wl-done]');
   var valid=function(){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())};
   var unavailable=function(){broken=true;token=null;human.hidden=true;fail('the human check didn’t load, so the form can’t send. a content blocker may be stopping challenges.cloudflare.com. reload to try again.')};
   var reset=function(){token=null;if(window.turnstile&&widget!==null)window.turnstile.reset(widget)};
@@ -203,19 +205,21 @@ if(wl){var API='https://api.groove.guru/v1/waitlist',SITEKEY='0x4AAAAAAFRBOsa9D5
   d.head.appendChild(tag);
   em.addEventListener('input',function(){if(em.getAttribute('aria-invalid')==='true'&&valid()){em.setAttribute('aria-invalid','false');err.hidden=true}});
   wl.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;
-    if(!valid()){em.setAttribute('aria-invalid','true');fail('that email looks off. try again?');em.focus();return}
+    if(!valid()){fail('that email address doesn’t look right. check it and try again.',true);return}
     em.setAttribute('aria-invalid','false');
     if(broken||!window.turnstile){unavailable();return}
     if(!token){fail('one more step: complete the human check below the field, then send.');return}
-    go.disabled=true;lbl.textContent='sending…';
+    busy(true);
     var body={email:em.value.trim(),product:'grooveguru',captchaToken:token};
     fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
-      .then(function(r){if(r.ok)return null;return r.json().catch(function(){return null}).then(function(p){var t=p&&typeof p.type==='string'?p.type:'';throw new Error(/\/captcha-failed$/.test(t)?'captcha':String(r.status))})})
-      .then(function(){$('[data-wl-email]').textContent=body.email;wl.hidden=true;human.hidden=true;$('[data-wl-done]').hidden=false})
+      .then(function(r){if(r.ok)return null;return r.json().catch(function(){return null}).then(function(p){var t=p&&typeof p.type==='string'?p.type:'';throw new Error(/\/captcha-failed$/.test(t)?'captcha':/\/validation-failed$/.test(t)?'email':String(r.status))})})
+      .then(function(){$('[data-wl-email]').textContent=body.email;wl.hidden=true;human.hidden=true;done.hidden=false;done.focus()})
       .catch(function(x){var why=x&&x.message;
-        fail(why==='captcha'?'the human check didn’t go through. it has been reset: complete it again, then send.'
-          :Number(why)===429?'too many tries. give it a minute, then send again.'
-          :'that didn’t go through, and nothing was saved. try again in a minute, or follow the build on '+GH+'.')})
-      .then(function(){reset();go.disabled=false;lbl.textContent='join the waitlist'})});
+        if(why==='email'){fail('that email address doesn’t look right. check it and try again.',true);return}
+        fail(why==='captcha'?'the human check didn’t go through. it’s been reset — complete it again, then send.'
+          :Number(why)===429?'too many tries. wait a minute, then try again.'
+          :'we couldn’t reach the waitlist just now, and nothing was saved. try again in a moment, or follow the build on '+GH+'.')})
+      .then(function(){reset();busy(false)})});
+  $('[data-wl-again]').addEventListener('click',function(){done.hidden=true;wl.hidden=false;human.hidden=false;err.hidden=true;em.setAttribute('aria-invalid','false');reset();em.focus();em.select()});
 }
 })();

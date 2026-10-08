@@ -734,3 +734,15 @@ button.pad:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,25
 .wl__human{min-height:65px}
 .wl__err{color:var(--amber)}
 .wl__err a,.wl__done a{color:var(--ink)}
+.wl__spin{display:none;width:12px;height:12px;margin-right:8px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:wl-spin .7s linear infinite}
+.wl__go[aria-busy=true] .wl__spin{display:inline-block}
+@keyframes wl-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.wl__go[aria-busy=true] .wl__spin{display:none}}
+.wl__done{display:grid;gap:8px;padding:18px 20px;border:1px solid var(--line2);border-left:3px solid var(--ink);background:var(--s1);overflow-wrap:anywhere}
+.wl__done:focus{outline:none}
+.wl__done:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wl__done p{margin:0;color:var(--ink)}
+.wl__done .fine{color:var(--mut)}
+.wl__done-h{font:700 20px/1.1 var(--d);letter-spacing:.01em}
+.wl__done strong{font-family:var(--m);font-weight:500}
+.wl__again{padding:0;border:0;background:none;color:var(--ink);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
