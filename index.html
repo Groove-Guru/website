@@ -254,6 +254,19 @@
    </div>
    <div class="getin__cta" data-reveal="2">
     <div class="actions"><a class="btn btn--primary btn--lg" href="https://github.com/Groove-Guru">follow the build <span class="arr">→</span></a><a class="btn btn--ghost btn--lg" href="#step-1">start at zero</a></div>
+    <div class="wl" id="waitlist">
+     <h3 class="wl__h">get one email when it’s ready</h3>
+     <p class="fine">leave your email and we write once, when the harness and pro are ready to use. nothing else.</p>
+     <form class="wl__form" novalidate aria-label="Groove Guru waitlist" data-wl hidden>
+      <label class="sr-only" for="wl-email">email</label>
+      <input class="wl__in" id="wl-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required aria-describedby="wl-err">
+      <button class="btn btn--primary wl__go" type="submit"><span data-wl-label>join the waitlist</span></button>
+     </form>
+     <div class="wl__human" role="group" aria-label="human check" hidden data-wl-captcha></div>
+     <p class="wl__err fine" id="wl-err" role="alert" hidden data-wl-err></p>
+     <p class="wl__done fine" role="status" hidden data-wl-done><strong>check your inbox.</strong> we sent a confirmation link to <span data-wl-email></span>. open it to hold your place.</p>
+     <noscript><p class="fine">the waitlist needs javascript for its human check. turn it on and reload, or follow the build on github.</p></noscript>
+    </div>
     <dl class="plans">
      <div><dt>harness</dt><dd>free<small>open source · mit · self-host</small></dd></div>
      <div><dt>pro</dt><dd>$6.99/mo<small>or $49.99/yr · at launch</small></dd></div>

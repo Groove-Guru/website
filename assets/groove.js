@@ -174,4 +174,48 @@ if(Z){
   var h0=fromHash();go(h0>-1?h0:(+st.step||0),{hash:false,announce:false});
   if(h0>-1)requestAnimationFrame(toZ);
 }
+
+/* 06 waitlist — posts { email, product: "grooveguru", captchaToken } to the
+   waitlist Worker at api.groove.guru (Cratefield harness waitlist module, in
+   Groove-Guru/waitlist-backend). captchaToken is a Cloudflare Turnstile token
+   (action "waitlist"); the Worker refuses a join without one (400,
+   captcha-failed). Tokens are single-use, so the widget resets after every
+   try. Any failure is said plainly; nothing pretends to be saved. Without JS
+   the form stays hidden and a note says why. */
+var wl=$('[data-wl]');
+if(wl){var API='https://api.groove.guru/v1/waitlist',SITEKEY='0x4AAAAAAFRBOsa9D5js37KJ',
+  TS='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=grooveTurnstileReady',
+  em=wl.elements.email,go=$('.wl__go',wl),lbl=$('[data-wl-label]',wl),human=$('[data-wl-captcha]'),err=$('[data-wl-err]'),
+  token=null,widget=null,broken=false,GH='<a href="https://github.com/Groove-Guru">github</a>';
+  var fail=function(h){err.innerHTML=h;err.hidden=false};
+  var valid=function(){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())};
+  var unavailable=function(){broken=true;token=null;human.hidden=true;fail('the human check didn’t load, so the form can’t send. a content blocker may be stopping challenges.cloudflare.com. reload to try again.')};
+  var reset=function(){token=null;if(window.turnstile&&widget!==null)window.turnstile.reset(widget)};
+  wl.hidden=false;human.hidden=false;
+  window.grooveTurnstileReady=function(){clearTimeout(waited);
+    widget=window.turnstile.render(human,{sitekey:SITEKEY,action:'waitlist',theme:'dark',size:'flexible',
+      callback:function(t){token=t;broken=false;if(/human check/.test(err.textContent))err.hidden=true},
+      'expired-callback':function(){token=null},'timeout-callback':function(){token=null},
+      'error-callback':function(){token=null;fail('the human check hit an error. reload the page and try again.');return true}})};
+  var tag=d.createElement('script');tag.src=TS;tag.async=true;tag.defer=true;
+  tag.onerror=function(){clearTimeout(waited);unavailable()};
+  var waited=setTimeout(function(){if(!window.turnstile)unavailable()},10000);
+  d.head.appendChild(tag);
+  em.addEventListener('input',function(){if(em.getAttribute('aria-invalid')==='true'&&valid()){em.setAttribute('aria-invalid','false');err.hidden=true}});
+  wl.addEventListener('submit',function(e){e.preventDefault();err.hidden=true;
+    if(!valid()){em.setAttribute('aria-invalid','true');fail('that email looks off. try again?');em.focus();return}
+    em.setAttribute('aria-invalid','false');
+    if(broken||!window.turnstile){unavailable();return}
+    if(!token){fail('one more step: complete the human check below the field, then send.');return}
+    go.disabled=true;lbl.textContent='sending…';
+    var body={email:em.value.trim(),product:'grooveguru',captchaToken:token};
+    fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){if(r.ok)return null;return r.json().catch(function(){return null}).then(function(p){var t=p&&typeof p.type==='string'?p.type:'';throw new Error(/\/captcha-failed$/.test(t)?'captcha':String(r.status))})})
+      .then(function(){$('[data-wl-email]').textContent=body.email;wl.hidden=true;human.hidden=true;$('[data-wl-done]').hidden=false})
+      .catch(function(x){var why=x&&x.message;
+        fail(why==='captcha'?'the human check didn’t go through. it has been reset: complete it again, then send.'
+          :Number(why)===429?'too many tries. give it a minute, then send again.'
+          :'that didn’t go through, and nothing was saved. try again in a minute, or follow the build on '+GH+'.')})
+      .then(function(){reset();go.disabled=false;lbl.textContent='join the waitlist'})});
+}
 })();
