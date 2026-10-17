@@ -175,6 +175,10 @@ if(Z){
   if(h0>-1)requestAnimationFrame(toZ);
 }
 
+/* film: the hero "watch the film" link scrolls to #film (the anchor does that) and starts it.
+   Playback can be refused (autoplay policy, codec); the rejection is caught and the controls stay usable. */
+$$('[data-play-film]').forEach(function(a){a.addEventListener('click',function(){var v=$('#film video');if(!v)return;try{var p=v.play();if(p&&p.catch)p.catch(function(){})}catch(x){}})});
+
 /* 06 waitlist — posts { email, product: "grooveguru", captchaToken } to the
    waitlist Worker at api.groove.guru (Cratefield harness waitlist module, in
    Groove-Guru/waitlist-backend). captchaToken is a Cloudflare Turnstile token
