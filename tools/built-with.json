@@ -5,6 +5,16 @@
   "page": "https://factory0.ventures/ventures/groove-guru/",
   "uses": [
     {
+      "id": "FZ-004",
+      "name": "Cratefield",
+      "kind": "factory-zero",
+      "url": "https://cratefield.com/",
+      "role": "framework",
+      "phrase": "Built with",
+      "status": "live",
+      "note": "The waitlist Worker at api.groove.guru runs on the Cratefield harness waitlist module."
+    },
+    {
       "id": "FZ-012",
       "name": "Keep Shipping",
       "kind": "factory-zero",
@@ -13,6 +23,16 @@
       "phrase": "Deploys by",
       "status": "planned",
       "note": "Every venture site and Worker deployed from the Keep Shipping console."
+    },
+    {
+      "id": "google-fonts",
+      "name": "Google Fonts",
+      "kind": "third-party",
+      "url": "https://fonts.google.com",
+      "role": "fonts",
+      "phrase": "Typefaces from",
+      "status": "live",
+      "note": "The site’s typefaces (Big Shoulders Display, Big Shoulders Stencil Display, Instrument Sans, JetBrains Mono), loaded from Google."
     },
     {
       "id": "cloudflare",
